@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=4 format=3 uid="uid://by81tbvyl7e7d"]
+
+[ext_resource type="Script" uid="uid://c8w7s8lcjodqs" path="res://Scripts/character_stats.gd" id="1_1vppi"]
+[ext_resource type="Texture2D" uid="uid://ry7pa6it8gfo" path="res://Assets/kris_no_background.png" id="1_6j6re"]
+[ext_resource type="Resource" uid="uid://bfrat850pgc7r" path="res://Characters/Kris/kris_starting_deck.tres" id="3_1h7x2"]
+
+[resource]
+script = ExtResource("1_1vppi")
+starting_deck = ExtResource("3_1h7x2")
+cards_per_turn = 10
+art = ExtResource("1_6j6re")
+max_health = 99
+metadata/_custom_type_script = "uid://c8w7s8lcjodqs"

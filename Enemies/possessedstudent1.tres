@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Stats" load_steps=3 format=3 uid="uid://coj2qxpqiuklg"]
+
+[ext_resource type="Texture2D" uid="uid://dlkmknxuxobhe" path="res://Assets/posessed_student_resized.png" id="1_1dg3f"]
+[ext_resource type="Script" uid="uid://de51cmg4dd7e8" path="res://Scripts/Stats.gd" id="1_qcm8j"]
+
+[resource]
+script = ExtResource("1_qcm8j")
+art = ExtResource("1_1dg3f")
+max_health = 101
+metadata/_custom_type_script = "uid://de51cmg4dd7e8"

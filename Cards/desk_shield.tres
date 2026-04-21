@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://0c6trbledtc8"]
+
+[ext_resource type="Script" uid="uid://clbaj1phhn7h2" path="res://custom_resources/card.gd" id="1_de435"]
+
+[resource]
+script = ExtResource("1_de435")
+id = "desk_shield"
+type = 1
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

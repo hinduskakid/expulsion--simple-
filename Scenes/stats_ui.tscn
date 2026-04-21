@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtgwas4a1hl0f"]
+
+[ext_resource type="Script" uid="uid://qbbafry1gw2i" path="res://Scenes/stats_ui.gd" id="1_dv0x8"]
+[ext_resource type="Texture2D" uid="uid://b18rkyc2gobal" path="res://Assets/healthicon.jpg" id="1_wacwo"]
+[ext_resource type="Texture2D" uid="uid://dabbnd34adle0" path="res://Assets/blockicon.jpg" id="2_yqqf3"]
+
+[sub_resource type="FontFile" id="FontFile_dv0x8"]
+subpixel_positioning = 0
+msdf_pixel_range = 14
+msdf_size = 128
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
+[node name="StatsUI" type="HBoxContainer"]
+custom_minimum_size = Vector2(90, 16)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -117.0
+offset_top = 3.0
+offset_right = 63.0
+offset_bottom = 43.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+script = ExtResource("1_dv0x8")
+
+[node name="Block" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="BlockImage" type="TextureRect" parent="Block"]
+layout_mode = 2
+texture = ExtResource("2_yqqf3")
+expand_mode = 3
+
+[node name="BlockLabel" type="Label" parent="Block"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_dv0x8")
+theme_override_font_sizes/font_size = 27
+text = "100"
+
+[node name="Health" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HealthImage" type="TextureRect" parent="Health"]
+layout_mode = 2
+texture = ExtResource("1_wacwo")
+expand_mode = 3
+
+[node name="HealthLabel" type="Label" parent="Health"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontFile_dv0x8")
+theme_override_font_sizes/font_size = 27
+text = "100"

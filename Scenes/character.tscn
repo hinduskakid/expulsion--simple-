@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://1ldhoh303qwp"]
+
+[ext_resource type="Script" uid="uid://c10oyo6ybgux2" path="res://Scripts/character.gd" id="1_lkv7d"]
+[ext_resource type="Script" uid="uid://de51cmg4dd7e8" path="res://Scripts/Stats.gd" id="2_owm7s"]
+[ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="2_ushfy"]
+[ext_resource type="Texture2D" uid="uid://ry7pa6it8gfo" path="res://Assets/kris_no_background.png" id="3_nytcm"]
+
+[sub_resource type="Resource" id="Resource_ejsiy"]
+script = ExtResource("2_owm7s")
+art = ExtResource("3_nytcm")
+metadata/_custom_type_script = "uid://de51cmg4dd7e8"
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_lkv7d")
+stats = SubResource("Resource_ejsiy")
+cards_per_turn = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.4164544, 1.4164544, 1.4164544, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_nytcm")
+
+[node name="StatsUI" parent="." instance=ExtResource("2_ushfy")]
+unique_name_in_owner = true
+offset_left = -48.0
+offset_top = 120.0
+offset_right = 42.0
+offset_bottom = 160.0
