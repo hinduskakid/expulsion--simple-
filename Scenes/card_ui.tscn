@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://6wxhoj066rjy"]
+[gd_scene load_steps=10 format=3 uid="uid://6wxhoj066rjy"]
 
 [ext_resource type="Script" uid="uid://8cadkwvpso78" path="res://Scripts/card_ui.gd" id="1_lgc0u"]
+[ext_resource type="Texture2D" uid="uid://1r2pb8rpdn08" path="res://Assets/stickattackplaceholder2.jpg" id="2_lp0xi"]
 [ext_resource type="Script" uid="uid://0rvbi6rrqvqx" path="res://Scenes/card_state_machine.gd" id="2_y8epe"]
 [ext_resource type="Script" uid="uid://doq0n22mnappv" path="res://Scripts/CardStates/card_base_state.gd" id="3_vxiou"]
 [ext_resource type="Script" uid="uid://dlakiv8gpvnqt" path="res://Scripts/CardStates/card_clicked_state.gd" id="4_ba8y5"]
@@ -12,39 +13,38 @@
 size = Vector2(175, 100)
 
 [node name="CardUI" type="Control"]
-custom_minimum_size = Vector2(175, 100)
+custom_minimum_size = Vector2(160, 100)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1127.0
-offset_bottom = -738.0
+offset_left = -75.0
+offset_top = -35.0
+offset_right = -1052.0
+offset_bottom = -703.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 script = ExtResource("1_lgc0u")
 
-[node name="Color" type="ColorRect" parent="."]
+[node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.10687102, 0.3546756, 0.114373736, 1)
+mouse_filter = 1
 
-[node name="State" type="Label" parent="."]
+[node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 25
-text = "state"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("2_lp0xi")
+expand_mode = 3
 
 [node name="DropPointDetector" type="Area2D" parent="."]
 collision_mask = 2

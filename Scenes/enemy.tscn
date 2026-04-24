@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://batkm1vyn3rj0"]
+[gd_scene load_steps=7 format=3 uid="uid://batkm1vyn3rj0"]
 
 [ext_resource type="Texture2D" uid="uid://dlkmknxuxobhe" path="res://Assets/posessed_student_resized.png" id="1_1f0kj"]
 [ext_resource type="Script" uid="uid://ebtikxtfl5fu" path="res://Scenes/enemy.gd" id="1_afpow"]
+[ext_resource type="Resource" uid="uid://coj2qxpqiuklg" path="res://Enemies/possessedstudent1.tres" id="2_0830c"]
 [ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="2_afpow"]
 [ext_resource type="Texture2D" uid="uid://dwcc62fus7cnf" path="res://Assets/arrow_no_background.png" id="5_0830c"]
 
@@ -10,26 +11,30 @@ size = Vector2(175, 274.5)
 
 [node name="Enemy" type="Area2D" groups=["enemy"]]
 script = ExtResource("1_afpow")
+stats = ExtResource("2_0830c")
+
+[node name="StatsUI" parent="." instance=ExtResource("2_afpow")]
+offset_left = 195.0
+offset_top = 311.0
+offset_right = 375.0
+offset_bottom = 351.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(2.454227, 2.454227, 2.454227, 1)
-position = Vector2(200, 87)
+position = Vector2(294, 181)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_1f0kj")
 
-[node name="StatsUI" parent="." instance=ExtResource("2_afpow")]
-offset_left = 156.0
-offset_top = 215.0
-offset_right = 246.0
-offset_bottom = 255.0
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 4
-position = Vector2(189.5, 71.75)
+position = Vector2(287, 169)
 shape = SubResource("RectangleShape2D_287tu")
 
 [node name="Arrow" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1.0000057, 80.00001)
+position = Vector2(111, 166.00003)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("5_0830c")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

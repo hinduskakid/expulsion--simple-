@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://bv3s6t7jpsnm6"]
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bv3s6t7jpsnm6"]
 
-[ext_resource type="Script" uid="uid://clbaj1phhn7h2" path="res://custom_resources/card.gd" id="1_qu71u"]
+[ext_resource type="Texture2D" uid="uid://1r2pb8rpdn08" path="res://Assets/stickattackplaceholder2.jpg" id="1_gawcu"]
+[ext_resource type="Script" uid="uid://dxqadb1bh70py" path="res://Cards/stick_attack.gd" id="2_gawcu"]
 
 [resource]
-script = ExtResource("1_qu71u")
+script = ExtResource("2_gawcu")
 id = "stick_attack"
 target = 3
+icon = ExtResource("1_gawcu")
 metadata/_custom_type_script = "uid://clbaj1phhn7h2"
