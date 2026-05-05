@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://87uigx2jbj3q" path="res://Scenes/choice_dialogue.tscn" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://6wxhoj066rjy" path="res://Scenes/card_ui.tscn" id="9_d53gg"]
 [ext_resource type="Script" uid="uid://du188alqtvjr4" path="res://Scripts/hand.gd" id="9_twsak"]
+[ext_resource type="AudioStream" uid="uid://dq10b8k2h4raa" path="res://Sounds/Music/Honest-_Brian-Piccolo_.ogg" id="10_twsak"]
 [ext_resource type="PackedScene" uid="uid://dwp4mnxxp08l5" path="res://Scenes/michla.tscn" id="11_w6tjk"]
-[ext_resource type="Resource" uid="uid://8q1nie0ty2al" path="res://Characters/Michla/michla.tres" id="12_xisnc"]
 [ext_resource type="PackedScene" uid="uid://c4oy35slbffob" path="res://Scenes/player_1.tscn" id="13_y8jr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avwh6"]
@@ -95,4 +95,7 @@ shape = SubResource("RectangleShape2D_xisnc")
 [node name="Michla" parent="." instance=ExtResource("11_w6tjk")]
 visibility_layer = 2
 position = Vector2(185.33334, 752)
-stats = ExtResource("12_xisnc")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_twsak")
+autoplay = true
