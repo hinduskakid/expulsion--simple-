@@ -7,5 +7,6 @@
 script = ExtResource("2_dbffb")
 id = "desk_shield"
 type = 1
+target = 2
 icon = ExtResource("1_dbffb")
 metadata/_custom_type_script = "uid://clbaj1phhn7h2"

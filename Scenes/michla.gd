@@ -1,4 +1,4 @@
-class_name Player
+class_name Michla
 extends Area2D
 
 
@@ -6,7 +6,6 @@ extends Area2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var stats_ui: StatsUI = $StatsUI as StatsUI
 var has_played := false
-
 
 func set_character_stats(value: CharacterStats) -> void:
 	stats = value.create_instance()

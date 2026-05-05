@@ -47,7 +47,7 @@ texture = ExtResource("2_lp0xi")
 expand_mode = 3
 
 [node name="DropPointDetector" type="Area2D" parent="."]
-collision_mask = 2
+collision_mask = 7
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]

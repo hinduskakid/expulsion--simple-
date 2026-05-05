@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://87uigx2jbj3q" path="res://Scenes/choice_dialogue.tscn" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://6wxhoj066rjy" path="res://Scenes/card_ui.tscn" id="9_d53gg"]
 [ext_resource type="Script" uid="uid://du188alqtvjr4" path="res://Scripts/hand.gd" id="9_twsak"]
-[ext_resource type="PackedScene" uid="uid://dwp4mnxxp08l5" path="res://Scenes/michla.tscn" id="11_w6tjk"]
-[ext_resource type="Resource" uid="uid://8q1nie0ty2al" path="res://Characters/Michla/michla.tres" id="12_xisnc"]
+[ext_resource type="Resource" uid="uid://bv3s6t7jpsnm6" path="res://Cards/stick_attack.tres" id="11_xisnc"]
+[ext_resource type="Resource" uid="uid://0c6trbledtc8" path="res://Cards/desk_shield.tres" id="12_y8jr2"]
 [ext_resource type="PackedScene" uid="uid://c4oy35slbffob" path="res://Scenes/player_1.tscn" id="13_y8jr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avwh6"]
@@ -62,37 +62,26 @@ alignment = 1
 script = ExtResource("9_twsak")
 card_ui_scene = ExtResource("9_d53gg")
 
+[node name="CardUI" parent="BattleUI/Hand" instance=ExtResource("9_d53gg")]
+layout_mode = 2
+card = ExtResource("11_xisnc")
+
+[node name="CardUI2" parent="BattleUI/Hand" instance=ExtResource("9_d53gg")]
+layout_mode = 2
+card = ExtResource("11_xisnc")
+
+[node name="CardUI3" parent="BattleUI/Hand" instance=ExtResource("9_d53gg")]
+layout_mode = 2
+card = ExtResource("12_y8jr2")
+
 [node name="Player1" parent="." instance=ExtResource("13_y8jr2")]
-position = Vector2(453.33334, 588)
+position = Vector2(392, 624)
 
 [node name="Enemy" parent="." instance=ExtResource("7_3w34b")]
-position = Vector2(1034.6666, 388)
+position = Vector2(1070.6666, 457.33334)
 collision_layer = 4
 
-[node name="Enemy" type="CollisionShape2D" parent="Enemy" groups=["enemy"]]
+[node name="Enemy" type="CollisionShape2D" parent="Enemy"]
 light_mask = 4
-position = Vector2(285.33334, 170.66664)
+position = Vector2(285.5, 171.58331)
 shape = SubResource("RectangleShape2D_xisnc")
-
-[node name="Enemy2" parent="." instance=ExtResource("7_3w34b")]
-position = Vector2(811.99994, 617.3333)
-collision_layer = 4
-
-[node name="Enemy" type="CollisionShape2D" parent="Enemy2" groups=["enemy"]]
-light_mask = 4
-position = Vector2(285.33334, 170.66664)
-shape = SubResource("RectangleShape2D_xisnc")
-
-[node name="Enemy3" parent="." instance=ExtResource("7_3w34b")]
-position = Vector2(588, 341.33334)
-collision_layer = 4
-
-[node name="Enemy" type="CollisionShape2D" parent="Enemy3" groups=["enemy"]]
-light_mask = 4
-position = Vector2(285.33334, 170.66664)
-shape = SubResource("RectangleShape2D_xisnc")
-
-[node name="Michla" parent="." instance=ExtResource("11_w6tjk")]
-visibility_layer = 2
-position = Vector2(185.33334, 752)
-stats = ExtResource("12_xisnc")

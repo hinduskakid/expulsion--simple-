@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://c4dfosdkekvoi"]
+
+[ext_resource type="Script" uid="uid://cpb3s1dy6y7iy" path="res://Cards/personification.gd" id="1_lp057"]
+[ext_resource type="Texture2D" uid="uid://by1bldkh7x63o" path="res://Assets/personification.png" id="1_xbwu2"]
+
+[resource]
+resource_name = "personification"
+script = ExtResource("1_lp057")
+type = 2
+target = 4
+icon = ExtResource("1_xbwu2")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

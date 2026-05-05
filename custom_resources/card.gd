@@ -1,7 +1,7 @@
 class_name Card
 extends Resource
 enum Type {ATTACK, DEFEND, POWER}
-enum Target {SELF, ALLY, ALL_ALLIES, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
+enum Target {SELF, ALLY, SINGLE_ALLY, ALL_ALLIES, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
 @export_group("Card Attributes")
 @export_group("Card Visuals")
 @export var id: String
@@ -11,15 +11,14 @@ enum Target {SELF, ALLY, ALL_ALLIES, SINGLE_ENEMY, ALL_ENEMIES, EVERYONE}
 
 
 func is_single_targeted() -> bool:
-	return target == Target.SINGLE_ENEMY
+	return target == Target.SINGLE_ENEMY or target == Target.SINGLE_ALLY
+
 
 
 func _get_targets(targets: Array[Node]) -> Array[Node]:
 	if not targets:
 		return []
-		
 	var tree := targets[0].get_tree()
-	
 	match target:
 		Target.SELF:
 			return tree.get_nodes_in_group("player")
@@ -30,10 +29,7 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 		_:
 			return []
 
-
 func play(targets: Array[Node], char_stats: CharacterStats) -> void:
-	Events.card_played.emit(self)
-		
 	if is_single_targeted():
 		apply_effects(targets)
 	else:

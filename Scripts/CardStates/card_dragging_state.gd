@@ -18,6 +18,8 @@ func on_input(event: InputEvent) -> void:
 	var cancel = event.is_action_pressed("right_mouse")
 	var confirm = event.is_action_released("left_mouse") or event.is_action_pressed("left_mouse")
 	
+	print("Dragging: single=", single_targetted, " motion=", mouse_motion, " targets=", card_ui.targets.size())
+	
 	if single_targetted and mouse_motion and card_ui.targets.size() > 0:
 		transition_requested.emit(self, CardState.State.AIMING)
 		return

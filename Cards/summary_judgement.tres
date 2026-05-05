@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://o0ffq3ovk8ue"]
+
+[ext_resource type="Texture2D" uid="uid://dpaosjcgecj7v" path="res://Assets/summary_judgement_no_background.png" id="1_553fp"]
+[ext_resource type="Script" uid="uid://be4ewvn6r2wnq" path="res://Cards/summary_judgement.gd" id="1_i41r7"]
+
+[resource]
+script = ExtResource("1_i41r7")
+type = 2
+target = 4
+icon = ExtResource("1_553fp")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

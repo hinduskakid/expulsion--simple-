@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_gawcu")
 id = "stick_attack"
-target = 3
+target = 4
 icon = ExtResource("1_gawcu")
 metadata/_custom_type_script = "uid://clbaj1phhn7h2"

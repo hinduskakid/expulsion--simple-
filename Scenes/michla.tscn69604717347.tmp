@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwp4mnxxp08l5"]
+
+[ext_resource type="Script" uid="uid://ctkx6mmsihg4n" path="res://Scenes/michla.gd" id="1_kbtll"]
+[ext_resource type="Texture2D" uid="uid://cwgx05guogqi4" path="res://Assets/michla_no_background.png" id="3_yuswe"]
+[ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="4_sb6l1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0e4v"]
+size = Vector2(127, 287)
+
+[node name="Michla" type="Area2D" groups=["player"]]
+position = Vector2(-3, -1)
+script = ExtResource("1_kbtll")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1.0569379, 1.0569379, 1.0569379, 1)
+position = Vector2(-15.999988, -9.500005)
+scale = Vector2(0.4673202, 0.3910675)
+texture = ExtResource("3_yuswe")
+
+[node name="StatsUI" parent="." instance=ExtResource("4_sb6l1")]
+offset_left = -88.0
+offset_top = 143.0
+offset_right = 92.0
+offset_bottom = 183.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -7.5)
+shape = SubResource("RectangleShape2D_p0e4v")

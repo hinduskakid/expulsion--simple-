@@ -1,4 +1,4 @@
-class_name Enemy
+class_name Enemy2
 extends Area2D
 
 const ARROW_OFFSET := 5
@@ -7,7 +7,7 @@ const ARROW_OFFSET := 5
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var arrow: Sprite2D = $Arrow
-@onready var stats_ui: StatsUI = $StatsUI
+@onready var stats_ui: StatsUI = $StatsUI as StatsUI
 
 func set_enemy_stats(value: Stats) -> void:
 	stats = value.create_instance()

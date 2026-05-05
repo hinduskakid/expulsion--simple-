@@ -2,11 +2,13 @@ class_name Stats
 extends Resource
 signal stats_changed
 
+#variables
 var health: int: set = set_health 
 var block: int : set = set_block
 @export var art: Texture
 @export var max_health := 999
-
+var is_downed: bool = false
+var downed_rounds_remaining: int = 0
 
 func set_health(value : int) -> void:
 	health = clampi(value, 0, max_health)

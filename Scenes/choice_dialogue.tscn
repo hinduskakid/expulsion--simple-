@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://87uigx2jbj3q"]
+
+[ext_resource type="Script" uid="uid://3ul3p8p67f75" path="res://Scenes/choice_dialogue.gd" id="1_r05fd"]
+
+[node name="ChoiceDialogue" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_r05fd")
+
+[node name="Execute" type="Button" parent="."]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 3.0
+offset_right = 217.0
+offset_bottom = 62.0
+text = "Execute"
+
+[node name="Redeem" type="Button" parent="."]
+layout_mode = 0
+offset_left = 453.0
+offset_top = 5.0
+offset_right = 572.0
+offset_bottom = 58.0
+text = "Redeem"
+
+[connection signal="pressed" from="Execute" to="." method="_on_execute_pressed"]
+[connection signal="pressed" from="Redeem" to="." method="_on_redeem_pressed"]
