@@ -32,11 +32,8 @@ func update_enemy() -> void:
 )
 	update_stats()
 func take_damage(damage: int) -> void:
-	print("take_damage called, health: ", stats.health, " is_downed: ", stats.is_downed)
 	if stats.is_downed:
-		print("Enemy is downed, emitting signal") # add this
-		Events.enemy_attacked_while_downed.emit(self) # trigger execute/redeem choice
-		return
+		return  # no effect on downed enemies
 	stats.take_damage(damage)
 	if stats.health <= 0:
 		go_down()

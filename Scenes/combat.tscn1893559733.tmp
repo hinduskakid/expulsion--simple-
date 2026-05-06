@@ -1,15 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://b30n8d8o8giih"]
+[gd_scene load_steps=13 format=3 uid="uid://b30n8d8o8giih"]
 
 [ext_resource type="Script" uid="uid://0etlvmxyy4jt" path="res://Scripts/combat.gd" id="1_7jmb3"]
 [ext_resource type="Texture2D" uid="uid://dt3bhtqvc3hdg" path="res://Assets/backgroundformatted2.png" id="2_fe60u"]
 [ext_resource type="PackedScene" uid="uid://dg8sfje5oworx" path="res://Scenes/card_target_selector.tscn" id="6_y8jr2"]
 [ext_resource type="PackedScene" uid="uid://batkm1vyn3rj0" path="res://Scenes/enemy.tscn" id="7_3w34b"]
+[ext_resource type="PackedScene" uid="uid://87uigx2jbj3q" path="res://Scenes/choice_dialogue.tscn" id="8_twsak"]
 [ext_resource type="PackedScene" uid="uid://6wxhoj066rjy" path="res://Scenes/card_ui.tscn" id="9_d53gg"]
 [ext_resource type="Script" uid="uid://du188alqtvjr4" path="res://Scripts/hand.gd" id="9_twsak"]
 [ext_resource type="AudioStream" uid="uid://dq10b8k2h4raa" path="res://Sounds/Music/Honest-_Brian-Piccolo_.ogg" id="10_twsak"]
 [ext_resource type="PackedScene" uid="uid://dwp4mnxxp08l5" path="res://Scenes/michla.tscn" id="11_w6tjk"]
-[ext_resource type="PackedScene" uid="uid://4laacefurj6s" path="res://Scenes/nattuo.tscn" id="11_xisnc"]
-[ext_resource type="Resource" uid="uid://b4eoliismwy8d" path="res://Cards/Characters/Nattuo/nattuo.tres" id="11_y8jr2"]
 [ext_resource type="PackedScene" uid="uid://c4oy35slbffob" path="res://Scenes/player_1.tscn" id="13_y8jr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avwh6"]
@@ -42,6 +41,12 @@ shape = SubResource("RectangleShape2D_avwh6")
 
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
+[node name="ChoiceDialogue" parent="BattleUI" instance=ExtResource("8_twsak")]
+offset_left = 326.0
+offset_top = 389.0
+offset_right = 366.0
+offset_bottom = 429.0
+
 [node name="Hand" type="HBoxContainer" parent="BattleUI"]
 clip_contents = true
 anchors_preset = 5
@@ -58,7 +63,7 @@ script = ExtResource("9_twsak")
 card_ui_scene = ExtResource("9_d53gg")
 
 [node name="Player1" parent="." instance=ExtResource("13_y8jr2")]
-position = Vector2(588, 601.3333)
+position = Vector2(453.33334, 588)
 
 [node name="Enemy" parent="." instance=ExtResource("7_3w34b")]
 position = Vector2(1034.6666, 388)
@@ -94,8 +99,3 @@ position = Vector2(185.33334, 752)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_twsak")
 autoplay = true
-
-[node name="Nattuo" parent="." instance=ExtResource("11_xisnc")]
-position = Vector2(360, 492)
-scale = Vector2(0.92, 0.92)
-stats = ExtResource("11_y8jr2")

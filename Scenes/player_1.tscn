@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://c4oy35slbffob"]
 
 [ext_resource type="Script" uid="uid://nmd4w848sir8" path="res://Scenes/player_1.gd" id="1_p0e4v"]
-[ext_resource type="Resource" uid="uid://by81tbvyl7e7d" path="res://Characters/Kris/kris.tres" id="2_aatkl"]
+[ext_resource type="Resource" uid="uid://by81tbvyl7e7d" path="res://Cards/Characters/Kris/kris.tres" id="2_aatkl"]
 [ext_resource type="Texture2D" uid="uid://ry7pa6it8gfo" path="res://Assets/kris_no_background.png" id="2_c4k0l"]
 [ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="3_aatkl"]
 

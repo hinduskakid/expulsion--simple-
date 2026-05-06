@@ -22,9 +22,11 @@ func clear_hand() -> void:
 		child.queue_free()
 
 func preview_cards(amount: int, stats: CharacterStats) -> void:
+	print("preview_cards called. amount: ", amount, " draw_pile size: ", stats.draw_pile.cards.size() if stats.draw_pile else "NULL DRAW PILE")
 	var preview_count = min(amount, stats.draw_pile.cards.size())
 	for i in preview_count:
 		var card = stats.draw_pile.cards[i]
+		print("Adding card: ", card)
 		var card_ui: CardUI = card_ui_scene.instantiate()
 		add_child(card_ui)
 		card_ui.parent = self

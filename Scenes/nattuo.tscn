@@ -1,27 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwp4mnxxp08l5"]
+[gd_scene load_steps=5 format=3 uid="uid://4laacefurj6s"]
 
-[ext_resource type="Script" uid="uid://ctkx6mmsihg4n" path="res://Scenes/michla.gd" id="1_kbtll"]
-[ext_resource type="Resource" uid="uid://8q1nie0ty2al" path="res://Cards/Characters/Michla/michla.tres" id="2_yuswe"]
-[ext_resource type="Texture2D" uid="uid://cwgx05guogqi4" path="res://Assets/michla_no_background.png" id="3_yuswe"]
-[ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="4_sb6l1"]
+[ext_resource type="Texture2D" uid="uid://bh853ah31qhyk" path="res://Assets/nattuo_back.png" id="1_7d5at"]
+[ext_resource type="Script" uid="uid://njlysy4nkn7c" path="res://Scenes/nattuo.gd" id="1_xj0a8"]
+[ext_resource type="PackedScene" uid="uid://dtgwas4a1hl0f" path="res://Scenes/stats_ui.tscn" id="4_q3y52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p0e4v"]
 size = Vector2(127, 305)
 
-[node name="Michla" type="Area2D" groups=["player"]]
+[node name="Nattuo" type="Area2D" groups=["player"]]
 position = Vector2(-4, -1)
 collision_layer = 2
-script = ExtResource("1_kbtll")
-stats = ExtResource("2_yuswe")
+script = ExtResource("1_xj0a8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1.0569379, 1.0569379, 1.0569379, 1)
 visibility_layer = 2
 position = Vector2(-15.999988, -9.500005)
 scale = Vector2(0.4673202, 0.3910675)
-texture = ExtResource("3_yuswe")
+texture = ExtResource("1_7d5at")
 
-[node name="StatsUI" parent="." instance=ExtResource("4_sb6l1")]
+[node name="StatsUI" parent="." instance=ExtResource("4_q3y52")]
 offset_left = -88.0
 offset_top = 143.0
 offset_right = 92.0
