@@ -14,11 +14,8 @@ func is_single_targeted() -> bool:
 	return target == Target.SINGLE_ENEMY or target == Target.SINGLE_ALLY
 
 
-
 func _get_targets(targets: Array[Node]) -> Array[Node]:
-	if not targets:
-		return []
-	var tree := targets[0].get_tree()
+	var tree: SceneTree = Engine.get_main_loop() as SceneTree
 	match target:
 		Target.SELF:
 			return tree.get_nodes_in_group("player")
@@ -27,6 +24,8 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 		Target.EVERYONE:
 			return tree.get_nodes_in_group("player") + tree.get_nodes_in_group("enemies")
 		_:
+			if not targets:
+				return []
 			return []
 
 func play(targets: Array[Node], char_stats: CharacterStats) -> void:

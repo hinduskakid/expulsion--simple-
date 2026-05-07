@@ -9,6 +9,9 @@ var block: int : set = set_block
 @export var max_health := 999
 var is_downed: bool = false
 var downed_rounds_remaining: int = 0
+var attack_modifier: int = 1
+
+#Functions
 
 func set_health(value : int) -> void:
 	health = clampi(value, 0, max_health)

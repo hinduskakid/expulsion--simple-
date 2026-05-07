@@ -144,7 +144,7 @@ func enemy_turn() -> void:
 			print(e.name + " attacks!")
 			var target = party[randi() % party.size()]
 			await enemy_lunge_specific(e, target)
-			target.stats.take_damage(10)
+			target.take_damage(10)  # call on the node, not stats
 		else:
 			print(e.name + " blocks!")
 			e.stats.set_block(5)

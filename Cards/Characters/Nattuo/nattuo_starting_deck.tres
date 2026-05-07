@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://clbaj1phhn7h2" path="res://custom_resources/card.gd" id="1_qc64w"]
 [ext_resource type="Resource" uid="uid://bv3s6t7jpsnm6" path="res://Cards/stick_attack.tres" id="2_c3wx8"]
 [ext_resource type="Resource" uid="uid://0c6trbledtc8" path="res://Cards/desk_shield.tres" id="3_jxcp5"]
-[ext_resource type="Resource" uid="uid://c4dfosdkekvoi" path="res://Cards/personification.tres" id="4_tlee7"]
+[ext_resource type="Resource" uid="uid://b3g3w2m3v2nr5" path="res://Cards/hard_set.tres" id="4_qc64w"]
 [ext_resource type="Script" uid="uid://vut1nr5ucuno" path="res://custom_resources/card_pile.gd" id="5_4b55m"]
 
 [resource]
 script = ExtResource("5_4b55m")
-cards = Array[ExtResource("1_qc64w")]([ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("3_jxcp5"), ExtResource("3_jxcp5"), ExtResource("3_jxcp5"), ExtResource("3_jxcp5"), ExtResource("4_tlee7")])
+cards = Array[ExtResource("1_qc64w")]([ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("2_c3wx8"), ExtResource("3_jxcp5"), ExtResource("3_jxcp5"), ExtResource("4_qc64w"), ExtResource("4_qc64w"), ExtResource("4_qc64w")])
 metadata/_custom_type_script = "uid://vut1nr5ucuno"

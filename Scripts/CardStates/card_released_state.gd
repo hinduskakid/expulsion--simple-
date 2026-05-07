@@ -3,7 +3,11 @@ var played: bool
 
 func enter() -> void:
 	played = false
-	if not card_ui.targets.is_empty():
+	var is_single_targeted := card_ui.card.is_single_targeted()
+	if is_single_targeted and not card_ui.targets.is_empty():
+		played = true
+		card_ui.play()
+	elif not is_single_targeted:
 		played = true
 		card_ui.play()
 
