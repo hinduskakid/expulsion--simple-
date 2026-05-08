@@ -23,6 +23,16 @@ func clear_hand() -> void:
 
 func preview_cards(amount: int, stats: CharacterStats) -> void:
 	print("preview_cards called. amount: ", amount, " draw_pile size: ", stats.draw_pile.cards.size() if stats.draw_pile else "NULL DRAW PILE")
+	
+	# reshuffle discard into draw pile if not enough cards
+	if stats.draw_pile.cards.size() < amount:
+		if not stats.discard.empty():
+			print("Reshuffling discard into draw pile")
+			for card in stats.discard.cards:
+				stats.draw_pile.add_card(card)
+			stats.draw_pile.shuffle()
+			stats.discard.clear()
+	
 	var preview_count = min(amount, stats.draw_pile.cards.size())
 	for i in preview_count:
 		var card = stats.draw_pile.cards[i]

@@ -9,12 +9,15 @@ var player_souls: int = 0
 var _selected_member = null
 var _race_card_played := false
 var _race_member_selected := false
-
+var _enemy_executed_this_round := false
+var _enemy_redeemed_this_round := false
 const CARDS_PER_TURN := 3
 
 #Functions
 func _ready() -> void:
 	Events.party_member_selected.connect(_on_party_member_selected)
+	Events.enemy_executed.connect(func(): _enemy_executed_this_round = true)
+	Events.enemy_redeemed.connect(func(): _enemy_redeemed_this_round = true)
 	for member in party:
 		print(member.name, " stats: ", member.stats)
 		if member.stats == null:
@@ -42,7 +45,7 @@ func game_loop() -> void:
 
 		while members_played.size() < party.size():
 			var member = await _wait_for_member_selection(members_played)
-
+			member.stats.set_block(0)  # reset block at start of each turn
 			hand.clear_hand()
 			hand.preview_cards(CARDS_PER_TURN, member.stats)
 
@@ -166,11 +169,14 @@ func enemy_lunge_specific(e: Enemy, target: Node2D) -> void:
 
 func round_end() -> void:
 	print("Round end")
+	_enemy_executed_this_round = false
+	_enemy_redeemed_this_round = false
 	hand.clear_hand()
+	for e in get_living_enemies():
+		e.stats.set_block(0)
 	for e in enemies:
 		if is_instance_valid(e) and e.stats.is_downed:
 			e.stats.downed_rounds_remaining -= 1
-			print(e.name + " downed for %d more rounds" % e.stats.downed_rounds_remaining)
 			if e.stats.downed_rounds_remaining <= 0:
 				e.revive()
 

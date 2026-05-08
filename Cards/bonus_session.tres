@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://disp8kau78550"]
+
+[ext_resource type="Texture2D" uid="uid://d1fs6l1tes27y" path="res://Assets/bonus_session.png" id="1_7f4gg"]
+[ext_resource type="Script" uid="uid://xajanm8proeb" path="res://Cards/bonus_session.gd" id="2_7f4gg"]
+
+[resource]
+script = ExtResource("2_7f4gg")
+id = "bonus_session"
+target = 4
+icon = ExtResource("1_7f4gg")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

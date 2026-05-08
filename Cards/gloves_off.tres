@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://tl8f7dojjhia"]
+
+[ext_resource type="Texture2D" uid="uid://djb57e8xwla4l" path="res://Assets/gloves_off_no_background.png" id="1_s1abw"]
+[ext_resource type="Script" uid="uid://kgovi1tee5j0" path="res://Cards/gloves_off.gd" id="2_6flff"]
+
+[resource]
+script = ExtResource("2_6flff")
+id = "gloves_off"
+target = 4
+icon = ExtResource("1_s1abw")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

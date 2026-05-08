@@ -9,5 +9,6 @@ func execute(targets: Array[Node]) -> void:
 			if target.stats.is_downed:
 				print("Summary Judgement executed the enemy!")
 				target.queue_free()
+				Events.enemy_executed.emit()
 			else:
 				print("Summary Judgement has no effect - enemy is not downed!")

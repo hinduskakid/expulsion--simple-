@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ddvbwufq0g1ec"]
+
+[ext_resource type="Texture2D" uid="uid://dcqt1hlajiwxd" path="res://Assets/back_on_d_no_background.png" id="1_4tvxm"]
+[ext_resource type="Script" uid="uid://b50se18alh5hm" path="res://Cards/back_on_d.gd" id="1_kgidn"]
+
+[resource]
+script = ExtResource("1_kgidn")
+id = "back_on_d"
+type = 1
+icon = ExtResource("1_4tvxm")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

@@ -12,6 +12,7 @@ func execute(targets: Array[Node]) -> void:
 					print("Personification redemption successful!")
 					target.queue_free()
 					Events.player_gained_soul.emit()
+					Events.enemy_redeemed.emit()
 				else:
 					print("Personification redemption failed!")
 			else:

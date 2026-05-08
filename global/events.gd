@@ -7,3 +7,5 @@ signal card_aim_ended(card_ui: CardUI)
 signal card_played(card: Card)
 signal player_gained_soul
 signal party_member_selected(member: Node)
+signal enemy_executed
+signal enemy_redeemed

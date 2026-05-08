@@ -5,8 +5,6 @@
 
 [resource]
 script = ExtResource("1_i41r7")
-id = "summary_judgement"
-type = 2
 target = 4
 icon = ExtResource("1_553fp")
 metadata/_custom_type_script = "uid://clbaj1phhn7h2"
