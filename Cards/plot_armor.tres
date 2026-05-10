@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://yhlensfq5gad"]
+
+[ext_resource type="Texture2D" uid="uid://cq1ippxmdflwc" path="res://Assets/plot_armor.png" id="1_cor35"]
+[ext_resource type="Script" uid="uid://cy41rgwv5m3q5" path="res://Cards/plot_armor.gd" id="2_cor35"]
+
+[resource]
+script = ExtResource("2_cor35")
+id = "plot_armor"
+type = 2
+target = 2
+icon = ExtResource("1_cor35")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

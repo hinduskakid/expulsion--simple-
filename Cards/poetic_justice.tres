@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://de0t60t7njbj0"]
+
+[ext_resource type="Texture2D" uid="uid://cr1afwq0ciowh" path="res://Assets/poetic_justice.png" id="1_2r3tf"]
+[ext_resource type="Script" uid="uid://b63gl5urjdamy" path="res://Cards/poetic_justice.gd" id="2_rr6wf"]
+
+[resource]
+script = ExtResource("2_rr6wf")
+id = "poetic_justice"
+type = 2
+target = 2
+icon = ExtResource("1_2r3tf")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

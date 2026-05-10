@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://bmeaqbiulbcng"]
+
+[ext_resource type="Texture2D" uid="uid://bj2eu6dvinsbo" path="res://Assets/pop_fixed.png" id="1_vwbf0"]
+[ext_resource type="Script" uid="uid://wxnleo3t4usw" path="res://Cards/point_of_privilege.gd" id="2_vwbf0"]
+
+[resource]
+script = ExtResource("2_vwbf0")
+id = "point_of_privilege"
+target = 4
+icon = ExtResource("1_vwbf0")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

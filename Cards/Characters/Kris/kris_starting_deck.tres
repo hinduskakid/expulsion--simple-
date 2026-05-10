@@ -1,12 +1,13 @@
-[gd_resource type="Resource" script_class="CardPile" load_steps=6 format=3 uid="uid://bfrat850pgc7r"]
+[gd_resource type="Resource" script_class="CardPile" load_steps=7 format=3 uid="uid://bfrat850pgc7r"]
 
 [ext_resource type="Script" uid="uid://clbaj1phhn7h2" path="res://custom_resources/card.gd" id="1_qv3u5"]
 [ext_resource type="Script" uid="uid://vut1nr5ucuno" path="res://custom_resources/card_pile.gd" id="2_fxbu3"]
 [ext_resource type="Resource" uid="uid://bv3s6t7jpsnm6" path="res://Cards/stick_attack.tres" id="2_quheg"]
-[ext_resource type="Resource" uid="uid://o0ffq3ovk8ue" path="res://Cards/summary_judgement.tres" id="3_fbm1a"]
+[ext_resource type="Resource" uid="uid://de0t60t7njbj0" path="res://Cards/poetic_justice.tres" id="3_fbm1a"]
 [ext_resource type="Resource" uid="uid://c4dfosdkekvoi" path="res://Cards/personification.tres" id="4_byfeg"]
+[ext_resource type="Resource" uid="uid://yhlensfq5gad" path="res://Cards/plot_armor.tres" id="4_i8ugq"]
 
 [resource]
 script = ExtResource("2_fxbu3")
-cards = Array[ExtResource("1_qv3u5")]([ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("3_fbm1a"), ExtResource("3_fbm1a"), ExtResource("3_fbm1a"), ExtResource("3_fbm1a"), ExtResource("3_fbm1a"), ExtResource("4_byfeg")])
+cards = Array[ExtResource("1_qv3u5")]([ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("2_quheg"), ExtResource("3_fbm1a"), ExtResource("4_i8ugq"), ExtResource("4_i8ugq"), ExtResource("4_i8ugq"), ExtResource("4_i8ugq"), ExtResource("4_byfeg")])
 metadata/_custom_type_script = "uid://vut1nr5ucuno"
