@@ -19,6 +19,8 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 	match target:
 		Target.SELF:
 			return tree.get_nodes_in_group("player")
+		Target.ALL_ALLIES:
+			return tree.get_nodes_in_group("player")
 		Target.ALL_ENEMIES:
 			return tree.get_nodes_in_group("enemies")
 		Target.EVERYONE:
@@ -27,7 +29,6 @@ func _get_targets(targets: Array[Node]) -> Array[Node]:
 			if not targets:
 				return []
 			return []
-
 func play(targets: Array[Node], char_stats: CharacterStats) -> void:
 	if is_single_targeted():
 		apply_effects(targets)

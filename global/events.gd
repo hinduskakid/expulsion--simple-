@@ -9,3 +9,4 @@ signal player_gained_soul
 signal party_member_selected(member: Node)
 signal enemy_executed
 signal enemy_redeemed
+signal attack_played

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://crdkttgts8aal"]
+
+[ext_resource type="Texture2D" uid="uid://dncun7egpsury" path="res://Assets/teacher_desk_shield.png" id="1_282tx"]
+[ext_resource type="Script" uid="uid://bxi2vjouh0cmf" path="res://Cards/teacher_desk_shield.gd" id="1_f2sw0"]
+
+[resource]
+script = ExtResource("1_f2sw0")
+id = "teacher_desk_shield"
+type = 1
+target = 3
+icon = ExtResource("1_282tx")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"

@@ -57,11 +57,29 @@ alignment = 1
 script = ExtResource("9_twsak")
 card_ui_scene = ExtResource("9_d53gg")
 
+[node name="CombatInfo" type="HBoxContainer" parent="BattleUI"]
+offset_left = 945.0
+offset_top = 733.0
+offset_right = 1138.0
+offset_bottom = 773.0
+
+[node name="RoundLabel" type="Label" parent="BattleUI/CombatInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5764706, 0.57254905, 0.36078432, 1)
+theme_override_font_sizes/font_size = 21
+text = "ROUND: 1"
+
+[node name="SoulsLabel" type="Label" parent="BattleUI/CombatInfo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.5764706, 0.57254905, 0.36078432, 1)
+theme_override_font_sizes/font_size = 21
+text = "SOULS: 1"
+
 [node name="Player1" parent="." instance=ExtResource("13_y8jr2")]
-position = Vector2(588, 601.3333)
+position = Vector2(592, 568)
 
 [node name="Enemy" parent="." instance=ExtResource("7_3w34b")]
-position = Vector2(1034.6666, 388)
+position = Vector2(1038.6666, 358.66666)
 collision_layer = 4
 
 [node name="Enemy" type="CollisionShape2D" parent="Enemy" groups=["enemy"]]
@@ -70,7 +88,7 @@ position = Vector2(285.33334, 170.66664)
 shape = SubResource("RectangleShape2D_xisnc")
 
 [node name="Enemy2" parent="." instance=ExtResource("7_3w34b")]
-position = Vector2(811.99994, 617.3333)
+position = Vector2(813.3334, 457.33334)
 collision_layer = 4
 
 [node name="Enemy" type="CollisionShape2D" parent="Enemy2" groups=["enemy"]]
@@ -89,13 +107,15 @@ shape = SubResource("RectangleShape2D_xisnc")
 
 [node name="Michla" parent="." instance=ExtResource("11_w6tjk")]
 visibility_layer = 2
-position = Vector2(185.33334, 752)
+position = Vector2(216.00002, 588)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_twsak")
 autoplay = true
 
 [node name="Nattuo" parent="." instance=ExtResource("11_xisnc")]
-position = Vector2(360, 492)
+position = Vector2(397.33334, 497.33334)
 scale = Vector2(0.92, 0.92)
 stats = ExtResource("11_y8jr2")
+
+[node name="SFXPlayer" type="AudioStreamPlayer2D" parent="."]

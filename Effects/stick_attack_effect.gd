@@ -11,5 +11,6 @@ func execute(targets: Array[Node]) -> void:
 			continue
 		if target is Enemy:
 			target.take_damage(amount)
+			Events.attack_played.emit()
 		elif target is Player:
 			target.take_damage(amount)

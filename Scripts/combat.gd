@@ -5,19 +5,36 @@ extends Node2D
 @onready var enemy: Enemy = $Enemy
 @onready var enemies: Array = [$Enemy, $Enemy2]
 @onready var hand: Hand = $BattleUI/Hand
+
+@onready var round_label: Label = $BattleUI/CombatInfo/RoundLabel
+@onready var souls_label: Label = $BattleUI/CombatInfo/SoulsLabel
+var current_round: int = 0
 var player_souls: int = 0
 var _selected_member = null
 var _race_card_played := false
 var _race_member_selected := false
 var _enemy_executed_this_round := false
 var _enemy_redeemed_this_round := false
+
+#SFX
+@onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
+const BLOCK_SOUND = preload("res://Assets/audio/audio_block.ogg")
+const ATTACK_SOUND = preload("res://Assets/audio/posessedattack.ogg")
+const STICK_SOUND = preload("res://Assets/audio/stick_attack_sound.ogg")
 const CARDS_PER_TURN := 3
+
+
 
 #Functions
 func _ready() -> void:
+	Events.attack_played.connect(func(): play_sfx(STICK_SOUND))
 	Events.party_member_selected.connect(_on_party_member_selected)
 	Events.enemy_executed.connect(func(): _enemy_executed_this_round = true)
 	Events.enemy_redeemed.connect(func(): _enemy_redeemed_this_round = true)
+	Events.player_gained_soul.connect(func():
+		player_souls += 1
+		update_souls_display())
+	
 	for member in party:
 		print(member.name, " stats: ", member.stats)
 		if member.stats == null:
@@ -31,6 +48,8 @@ func _ready() -> void:
 		member.stats.draw_pile.cards = member.stats.deck.cards.duplicate()
 		print(member.name, " draw_pile size after copy: ", member.stats.draw_pile.cards.size())
 		member.stats.draw_pile.shuffle()
+	
+	update_souls_display()
 	hand.clear_hand()
 	await game_loop()
 
@@ -41,11 +60,15 @@ func _on_party_member_selected(member) -> void:
 func game_loop() -> void:
 	var members_played := []
 	while true:
+		current_round += 1
+		round_label.text = "Round: " + str(current_round)
 		members_played.clear()
 
 		while members_played.size() < party.size():
 			var member = await _wait_for_member_selection(members_played)
-			member.stats.set_block(0)  # reset block at start of each turn
+			if not is_instance_valid(member):
+				continue
+			member.stats.set_block(0)
 			hand.clear_hand()
 			hand.preview_cards(CARDS_PER_TURN, member.stats)
 
@@ -61,9 +84,10 @@ func game_loop() -> void:
 				end_game("You win!")
 				return
 
-			member.has_played = true
-			member.modulate = Color(0.5, 0.5, 0.5)
-			members_played.append(member)
+			var actual_player = _selected_member
+			actual_player.has_played = true
+			actual_player.modulate = Color(0.5, 0.5, 0.5)
+			members_played.append(actual_player)
 
 			if get_living_enemies().any(func(e): return not e.stats.is_downed):
 				await enemy_turn()
@@ -79,17 +103,16 @@ func game_loop() -> void:
 				return
 
 		for member in party:
+			if not is_instance_valid(member):
+				continue
 			member.modulate = Color.WHITE
 			member.has_played = false
 
 		round_end()
-
 func _wait_for_member_selection(already_played: Array) -> Node:
-	print("Waiting... already_played: ", already_played)
 	while true:
 		await Events.party_member_selected
-		print("Signal received in _wait_for_member_selection: ", _selected_member.name if _selected_member else "null")
-		if _selected_member and not already_played.has(_selected_member):
+		if _selected_member and is_instance_valid(_selected_member) and not already_played.has(_selected_member):
 			return _selected_member
 		print(_selected_member.name + " already played this round!")
 	return party[0]
@@ -132,7 +155,7 @@ func _on_race_member_selected(_m) -> void:
 
 func check_party_dead() -> bool:
 	for member in party:
-		if member.stats.health > 0:
+		if is_instance_valid(member) and member.stats.health > 0:
 			return false
 	return true
 
@@ -145,11 +168,16 @@ func enemy_turn() -> void:
 		var action := randi() % 2
 		if action == 0:
 			print(e.name + " attacks!")
-			var target = party[randi() % party.size()]
+			var living_party := party.filter(func(m): return is_instance_valid(m))
+			if living_party.is_empty():
+				return
+			var target = living_party[randi() % living_party.size()]
 			await enemy_lunge_specific(e, target)
-			target.take_damage(10)  # call on the node, not stats
+			play_sfx(ATTACK_SOUND)
+			target.take_damage(50)
 		else:
 			print(e.name + " blocks!")
+			play_sfx(BLOCK_SOUND)
 			e.stats.set_block(5)
 		await get_tree().create_timer(0.3).timeout
 
@@ -195,3 +223,10 @@ func get_living_enemies() -> Array:
 		if is_instance_valid(e):
 			living.append(e)
 	return living
+
+func play_sfx(sound: AudioStream) -> void:
+	sfx_player.stream = sound
+	sfx_player.play()
+
+func update_souls_display() -> void:
+	souls_label.text = "Souls: " + str(player_souls)
