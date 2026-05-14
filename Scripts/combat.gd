@@ -15,6 +15,9 @@ var _race_card_played := false
 var _race_member_selected := false
 var _enemy_executed_this_round := false
 var _enemy_redeemed_this_round := false
+var members_played: Array = []
+@onready var game_over_layer: CanvasLayer = $BattleUI/GameOverLayer
+@onready var game_over_label: Label = $BattleUI/GameOverLayer/ColorRect/GameOverLabel
 
 #SFX
 @onready var sfx_player: AudioStreamPlayer2D = $SFXPlayer
@@ -28,9 +31,13 @@ const CARDS_PER_TURN := 3
 #Functions
 func _ready() -> void:
 	Events.attack_played.connect(func(): play_sfx(STICK_SOUND))
+	Events.party_member_died.connect(func(member):
+		if _selected_member == member:
+			_selected_member = null)
 	Events.party_member_selected.connect(_on_party_member_selected)
 	Events.enemy_executed.connect(func(): _enemy_executed_this_round = true)
 	Events.enemy_redeemed.connect(func(): _enemy_redeemed_this_round = true)
+	Events.delegate_used.connect(_on_delegate_used)
 	Events.player_gained_soul.connect(func():
 		player_souls += 1
 		update_souls_display())
@@ -58,13 +65,13 @@ func _on_party_member_selected(member) -> void:
 	_selected_member = member
 
 func game_loop() -> void:
-	var members_played := []
 	while true:
 		current_round += 1
 		round_label.text = "Round: " + str(current_round)
 		members_played.clear()
+		var enemy_index := 0  # track which enemy acts next
 
-		while members_played.size() < party.size():
+		while members_played.size() < party.filter(func(m): return is_instance_valid(m)).size():
 			var member = await _wait_for_member_selection(members_played)
 			if not is_instance_valid(member):
 				continue
@@ -89,17 +96,16 @@ func game_loop() -> void:
 			actual_player.modulate = Color(0.5, 0.5, 0.5)
 			members_played.append(actual_player)
 
-			if get_living_enemies().any(func(e): return not e.stats.is_downed):
-				await enemy_turn()
-			else:
-				round_end()
-				if all_enemies_dead():
-					end_game("You win!")
-					return
-				continue
+			# only one enemy acts per player turn
+			var living: Array = get_living_enemies()
+			if not living.is_empty():
+				var acting_enemy: Enemy = living[enemy_index % living.size()]
+				if not acting_enemy.stats.is_downed:
+					await enemy_turn_single(acting_enemy)
+				enemy_index += 1
 
 			if check_party_dead():
-				end_game("You lose!")
+				end_game("You got everyone killed.")
 				return
 
 		for member in party:
@@ -114,9 +120,13 @@ func _wait_for_member_selection(already_played: Array) -> Node:
 		await Events.party_member_selected
 		if _selected_member and is_instance_valid(_selected_member) and not already_played.has(_selected_member):
 			return _selected_member
-		print(_selected_member.name + " already played this round!")
-	return party[0]
-
+		if _selected_member and not is_instance_valid(_selected_member):
+			print("Selected member is dead, clearing")
+			_selected_member = null
+		elif _selected_member:
+			print(_selected_member.name + " already played this round!")
+	return party.filter(func(m): return is_instance_valid(m))[0]
+	
 func _wait_for_card_or_reselect(current_member, already_played: Array) -> String:
 	while true:
 		var result = await _race_signals()
@@ -159,28 +169,36 @@ func check_party_dead() -> bool:
 			return false
 	return true
 
-func enemy_turn() -> void:
-	print("Enemy turn")
+func enemy_turn_single(e: Enemy) -> void:
+	print("Enemy turn: ", e.name)
 	await get_tree().create_timer(0.5).timeout
-	for e in get_living_enemies():
-		if e.stats.is_downed:
-			continue
-		var action := randi() % 2
-		if action == 0:
-			print(e.name + " attacks!")
-			var living_party := party.filter(func(m): return is_instance_valid(m))
-			if living_party.is_empty():
-				return
-			var target = living_party[randi() % living_party.size()]
-			await enemy_lunge_specific(e, target)
-			play_sfx(ATTACK_SOUND)
-			target.take_damage(50)
-		else:
-			print(e.name + " blocks!")
-			play_sfx(BLOCK_SOUND)
-			e.stats.set_block(5)
-		await get_tree().create_timer(0.3).timeout
-
+	var action := randi() % 4
+	if action == 0:
+		print(e.name + " blocks for 5!")
+		play_sfx(BLOCK_SOUND)
+		e.stats.set_block(e.stats.block + 5)
+	elif action == 1:
+		print(e.name + " blocks for 15!")
+		play_sfx(BLOCK_SOUND)
+		e.stats.set_block(e.stats.block + 15)
+	elif action == 2:
+		print(e.name + " attacks for 5!")
+		var living_party := party.filter(func(m): return is_instance_valid(m))
+		if living_party.is_empty():
+			return
+		var target = living_party[randi() % living_party.size()]
+		await enemy_lunge_specific(e, target)
+		play_sfx(ATTACK_SOUND)
+		target.take_damage(5)
+	else:
+		print(e.name + " attacks for 25!")
+		var living_party := party.filter(func(m): return is_instance_valid(m))
+		if living_party.is_empty():
+			return
+		var target = living_party[randi() % living_party.size()]
+		await enemy_lunge_specific(e, target)
+		play_sfx(ATTACK_SOUND)
+		target.take_damage(25)
 func enemy_lunge_specific(e: Enemy, target: Node2D) -> void:
 	var original_pos := e.global_position
 	var target_pos := Vector2(target.global_position.x + 100, e.global_position.y)
@@ -210,6 +228,8 @@ func round_end() -> void:
 
 func end_game(message: String) -> void:
 	print(message)
+	game_over_label.text = message
+	game_over_layer.visible = true
 
 func all_enemies_dead() -> bool:
 	for e in enemies:
@@ -230,3 +250,6 @@ func play_sfx(sound: AudioStream) -> void:
 
 func update_souls_display() -> void:
 	souls_label.text = "Souls: " + str(player_souls)
+
+func _on_delegate_used(member: Node) -> void:
+	members_played.erase(member)

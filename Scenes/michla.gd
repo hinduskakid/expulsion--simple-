@@ -29,10 +29,11 @@ func update_stats() -> void:
 	
 
 func take_damage(damage: int) -> void:
-	if stats.health <= 0: 
+	if stats.health <= 0:
 		return
 	stats.take_damage(damage)
-	if stats.health <= 0: 
+	if stats.health <= 0:
+		Events.party_member_died.emit(self)
 		queue_free()
 
 func _on_mouse_entered() -> void:

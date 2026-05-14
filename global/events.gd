@@ -10,3 +10,5 @@ signal party_member_selected(member: Node)
 signal enemy_executed
 signal enemy_redeemed
 signal attack_played
+signal delegate_used(member: Node)
+signal party_member_died(member: Node)

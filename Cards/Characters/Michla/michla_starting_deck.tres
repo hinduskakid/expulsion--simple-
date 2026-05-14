@@ -3,12 +3,12 @@
 [ext_resource type="Script" uid="uid://clbaj1phhn7h2" path="res://custom_resources/card.gd" id="1_j8opd"]
 [ext_resource type="Resource" uid="uid://bv3s6t7jpsnm6" path="res://Cards/stick_attack.tres" id="2_b86j6"]
 [ext_resource type="Resource" uid="uid://0c6trbledtc8" path="res://Cards/desk_shield.tres" id="3_et1k6"]
-[ext_resource type="Resource" uid="uid://disp8kau78550" path="res://Cards/bonus_session.tres" id="3_pbdlt"]
 [ext_resource type="Resource" uid="uid://o0ffq3ovk8ue" path="res://Cards/summary_judgement.tres" id="4_8amoi"]
 [ext_resource type="Resource" uid="uid://bmeaqbiulbcng" path="res://Cards/point_of_privilege.tres" id="5_7vp8d"]
+[ext_resource type="Resource" uid="uid://h4a787j1wkmu" path="res://Cards/delegate.tres" id="5_fapbi"]
 [ext_resource type="Script" uid="uid://vut1nr5ucuno" path="res://custom_resources/card_pile.gd" id="5_jh5to"]
 
 [resource]
 script = ExtResource("5_jh5to")
-cards = Array[ExtResource("1_j8opd")]([ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("5_7vp8d"), ExtResource("3_et1k6"), ExtResource("3_pbdlt"), ExtResource("4_8amoi"), ExtResource("4_8amoi"), ExtResource("4_8amoi")])
+cards = Array[ExtResource("1_j8opd")]([ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("2_b86j6"), ExtResource("5_7vp8d"), ExtResource("3_et1k6"), ExtResource("5_fapbi"), ExtResource("3_et1k6"), ExtResource("4_8amoi"), ExtResource("4_8amoi")])
 metadata/_custom_type_script = "uid://vut1nr5ucuno"

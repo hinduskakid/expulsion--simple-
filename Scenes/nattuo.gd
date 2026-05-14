@@ -38,13 +38,12 @@ func take_damage(damage: int) -> void:
 	if stats.health <= 0:
 		return
 	var unblocked: int = max(0, damage - stats.block)
-	print("Nattuo take_damage: damage=", damage, " block=", stats.block, " unblocked=", unblocked)
 	stats.take_damage(damage)
 	if unblocked > 0:
 		stats.attack_modifier = 1
 		update_modifier()
-		print("Modifier reset to 1, label text: ", modifier_label.text if modifier_label else "NULL LABEL")
 	if stats.health <= 0:
+		Events.party_member_died.emit(self)
 		queue_free()
 
 func _on_mouse_entered() -> void:

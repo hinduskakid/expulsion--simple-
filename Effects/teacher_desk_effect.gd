@@ -1,7 +1,7 @@
 class_name TeacherDeskShieldEffect
 extends Effect
 
-var amount := 3
+var amount := 5
 
 func execute(targets: Array[Node]) -> void:
 	for target in targets:

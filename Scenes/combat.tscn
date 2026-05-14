@@ -75,6 +75,36 @@ theme_override_colors/font_color = Color(0.5764706, 0.57254905, 0.36078432, 1)
 theme_override_font_sizes/font_size = 21
 text = "SOULS: 1"
 
+[node name="GameOverLayer" type="CanvasLayer" parent="BattleUI"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="BattleUI/GameOverLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(nan, nan, nan, 1)
+
+[node name="GameOverLabel" type="Label" parent="BattleUI/GameOverLayer/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -60.25
+offset_right = 207.0
+offset_bottom = 60.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.5778094, 0, 0.05467934, 1)
+theme_override_font_sizes/font_size = 30
+text = "You got everyone killed...."
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Player1" parent="." instance=ExtResource("13_y8jr2")]
 position = Vector2(592, 568)
 
