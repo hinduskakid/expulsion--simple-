@@ -13,7 +13,7 @@ config_version=5
 config/name="Expulsion (simple)"
 run/main_scene="uid://c7q61ec5obpe4"
 config/features=PackedStringArray("4.5", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://dabbnd34adle0"
 
 [autoload]
 
