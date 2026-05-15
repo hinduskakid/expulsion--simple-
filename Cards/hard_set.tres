@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=3 format=3 uid="uid://b3g3w2m3v2nr5"]
 
-[ext_resource type="Texture2D" uid="uid://b8gg3ry75huxm" path="res://Assets/hard_set.png" id="1_rvuyg"]
+[ext_resource type="Texture2D" uid="uid://d1uke87uxo5g1" path="res://Assets/hard_set_3.png" id="1_rvuyg"]
 [ext_resource type="Script" uid="uid://biqa1sqm5taf7" path="res://Cards/hard_set.gd" id="2_8joqa"]
 
 [resource]

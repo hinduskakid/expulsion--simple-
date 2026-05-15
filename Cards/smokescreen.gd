@@ -1,6 +1,5 @@
 extends Card
 
 func apply_effects(targets: Array[Node]) -> void:
-	var effect := HardSetEffect.new()
-	effect.amount = 3
+	var effect := SmokescreenEffect.new()
 	effect.execute(targets)

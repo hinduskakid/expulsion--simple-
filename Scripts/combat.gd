@@ -16,6 +16,7 @@ var _race_member_selected := false
 var _enemy_executed_this_round := false
 var _enemy_redeemed_this_round := false
 var members_played: Array = []
+var enemy_turns_to_skip: int = 0
 @onready var game_over_layer: CanvasLayer = $BattleUI/GameOverLayer
 @onready var game_over_label: Label = $BattleUI/GameOverLayer/ColorRect/GameOverLabel
 
@@ -66,58 +67,57 @@ func _on_party_member_selected(member) -> void:
 
 func game_loop() -> void:
 	while true:
+		print("--- New round ", current_round + 1, " ---")
+		print("Party alive: ", party.filter(func(m): return is_instance_valid(m)).size())
 		current_round += 1
 		round_label.text = "Round: " + str(current_round)
 		members_played.clear()
-		var enemy_index := 0  # track which enemy acts next
-
-		while members_played.size() < party.filter(func(m): return is_instance_valid(m)).size():
+		var enemy_index := 0
+		while members_played.size() < party.filter(func(m): return is_instance_valid(m) and m.stats.health > 0).size():
 			var member = await _wait_for_member_selection(members_played)
 			if not is_instance_valid(member):
 				continue
 			member.stats.set_block(0)
 			hand.clear_hand()
 			hand.preview_cards(CARDS_PER_TURN, member.stats)
-
 			var action = await _wait_for_card_or_reselect(member, members_played)
-
 			if action == "reselected":
 				continue
-
 			hand.clear_hand()
 			await get_tree().process_frame
-
 			if all_enemies_dead():
 				end_game("You win!")
 				return
-
 			var actual_player = _selected_member
 			actual_player.has_played = true
 			actual_player.modulate = Color(0.5, 0.5, 0.5)
 			members_played.append(actual_player)
-
 			# only one enemy acts per player turn
 			var living: Array = get_living_enemies()
 			if not living.is_empty():
-				var acting_enemy: Enemy = living[enemy_index % living.size()]
-				if not acting_enemy.stats.is_downed:
-					await enemy_turn_single(acting_enemy)
-				enemy_index += 1
-
+				if enemy_turns_to_skip > 0:
+					print("Enemy turn skipped! ", enemy_turns_to_skip - 1, " remaining")
+					enemy_turns_to_skip -= 1
+				else:
+					var acting_enemy: Enemy = living[enemy_index % living.size()]
+					if not acting_enemy.stats.is_downed:
+						await enemy_turn_single(acting_enemy)
+					enemy_index += 1
+			await get_tree().process_frame
 			if check_party_dead():
 				end_game("You got everyone killed.")
 				return
-
 		for member in party:
 			if not is_instance_valid(member):
 				continue
 			member.modulate = Color.WHITE
 			member.has_played = false
-
 		round_end()
 func _wait_for_member_selection(already_played: Array) -> Node:
+	print("Waiting for selection. already_played count: ", already_played.size())
 	while true:
 		await Events.party_member_selected
+		print("Selection signal received. _selected_member: ", _selected_member)
 		if _selected_member and is_instance_valid(_selected_member) and not already_played.has(_selected_member):
 			return _selected_member
 		if _selected_member and not is_instance_valid(_selected_member):
@@ -125,7 +125,7 @@ func _wait_for_member_selection(already_played: Array) -> Node:
 			_selected_member = null
 		elif _selected_member:
 			print(_selected_member.name + " already played this round!")
-	return party.filter(func(m): return is_instance_valid(m))[0]
+	return party.filter(func(m): return is_instance_valid(m))[0]  # unreachable fallback
 	
 func _wait_for_card_or_reselect(current_member, already_played: Array) -> String:
 	while true:

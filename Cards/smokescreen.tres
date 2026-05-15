@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=3 uid="uid://ddtn1ytfsfenh"]
+
+[ext_resource type="Texture2D" uid="uid://bxxpnltv7ts8v" path="res://Assets/smokescreen.png" id="1_xug76"]
+[ext_resource type="Script" uid="uid://bcura8gpnss5p" path="res://Cards/smokescreen.gd" id="2_025u6"]
+
+[resource]
+script = ExtResource("2_025u6")
+id = "smokescreen"
+type = 2
+icon = ExtResource("1_xug76")
+metadata/_custom_type_script = "uid://clbaj1phhn7h2"
